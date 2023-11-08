@@ -122,7 +122,7 @@ resource "aws_volume_attachment" "project-iac-volume-attachment" {
   instance_id = aws_instance.project-iac-ec2-linux.id
 }
 resource "aws_cloudwatch_metric_alarm" "project-iac-cloudwatch-alarm" {
-  alarm_name                = "terraform-test-cloudwatch-alarm"
+  alarm_name                = "terraform-test-cloudwatch-alarm-linux"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = 15
   metric_name               = "CPUUtilization"
