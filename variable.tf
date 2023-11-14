@@ -1,3 +1,9 @@
+variable "ACCTID" {
+  type        = number
+  description = "AWS Account ID"
+}
+
+
 variable "enabled" {
   type        = bool
   description = "Whether to create new EC2 instance"
@@ -173,6 +179,75 @@ variable "delete_on_termination" {
   type        = bool
   description = "Whether the volume should be destroyed on instance termination"
   default     = true
+}
+
+
+
+variable "reboot_metric_threshold" {
+  type        = number
+  default     = 0
+  description = "The value against which the specified statistic is compared."
+}
+
+variable "recover_metric_threshold" {
+  type        = number
+  default     = 0
+  description = "The value against which the specified statistic is compared."
+}
+
+
+variable "reboot_evaluation_period" {
+  type        = string
+  default     = "3"
+  description = "The evaluation period over which to use when triggering alarms."
+}
+
+variable "recover_evaluation_period" {
+  type        = string
+  default     = "2"
+  description = "The evaluation period over which to use when triggering alarms."
+}
+variable "reboot_statistic_period" {
+  type        = string
+  default     = "Minimum"
+  description = "The number of seconds that make each statistic period."
+}
+variable "recover_statistic_period" {
+  type        = string
+  default     = "Minimum"
+  description = "The number of seconds that make each statistic period."
+}
+
+variable "reboot_metric_name" {
+  type        = string
+  default     = "StatusCheckFailed"
+  description = "The name for the alarm's associated metric."
+}
+variable "recover_metric_name" {
+  type        = string
+  default     = "StatusCheckFailed_System"
+  description = "The name for the alarm's associated metric."
+}
+variable "reboot_period" {
+  type        = number
+  default     = 60
+  description = "The period in seconds over which the specified statistic is applied."
+}
+variable "recover_period" {
+  type        = number
+  default     = 60
+  description = "The period in seconds over which the specified statistic is applied."
+}
+
+variable "reboot_actions_alarm" {
+  type        = list
+  default     = ["arn:aws:automate:us-east-2:ec2:reboot"]
+  description = "A list of actions to take when alarms are triggered. Will likely be an SNS topic for event distribution."
+}
+variable "recover_actions_alarm" {
+  type        = list
+  default     = ["arn:aws:automate:us-east-2:ec2:recover"]
+  description = "A list of actions to take when alarms are triggered. Will likely be an SNS topic for event distribution."
 }
 
 variable "tags" {
