@@ -88,7 +88,7 @@ resource "aws_instance" "project-iac-ec2-linux" {
     volume_type           = var.root_volume_type
     volume_size           = var.root_volume_size
     iops                  = local.root_iops
-    throughput            = local.root_throughput
+    throughput            = local.root_throughput 
     delete_on_termination = false
     encrypted             = true
     #kms_key_id            = var.root_block_device_kms_key_id
