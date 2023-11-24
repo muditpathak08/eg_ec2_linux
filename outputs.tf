@@ -68,9 +68,9 @@ output "alarm" {
 #   description = "EC2 instance Security Group name"
 # }
 
-
 output "security_group_id" {
-  value = module.aws_security_group[*].id
-}    
+  value = module.new_security_group[*].id
+}   
+
 
 
