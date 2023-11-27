@@ -68,10 +68,6 @@ variable "security_group_description" {
   default     = "EC2 Security Group"
   description = "The Security Group description."
 }
-variable "subnet_id" {
-  type        = string
-  description = "VPC Subnet ID the instance is launched in"
-}
 
 variable "region" {
   type        = string
