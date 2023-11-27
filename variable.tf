@@ -257,6 +257,11 @@ variable "ec2_tags" {
     type        = map(string)
   }
 
+variable "eip_allocation_id" {
+  type        = string
+  description = "Allocation ID of the elastic IP to be attached"
+}
+
 
 variable "awsprops" {
   type = map(any)

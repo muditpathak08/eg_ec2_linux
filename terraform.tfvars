@@ -13,6 +13,8 @@ security_groups = ["sg1","sg2"]
 instance_profile_name="test_profile"
 private_ip="10.0.0.9"
 region = "us-east-2"
+eip_allocation_id="eipalloc-0d6d0d62a857c4999"
+
 
 
 ec2_tags= {
