@@ -119,7 +119,7 @@ resource "aws_instance" "project-iac-ec2-linux" {
     #kms_key_id            = var.root_block_device_kms_key_id
   }
 depends_on = [module.new_security_group.rds_security_groups, aws_iam_role.iam]
-tags = merge(tomap(var.tags),
+tags = merge(tomap(var.ec2_tags),
 {ApplicationFunctionality = var.ApplicationFunctionality, 
 ApplicationDescription= var.ApplicationDescription,
 ApplicationOwner = var.ApplicationOwner, 
