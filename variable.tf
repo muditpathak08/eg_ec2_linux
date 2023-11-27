@@ -23,10 +23,7 @@ variable "assign_eip_address" {
   description = "Assign an Elastic IP address to the instance"
   default     = true
 }
-variable "iam_name" {
-  type = string
-  description = "ec2 iam role name"
-}
+
 variable "key_name" {
   type = string
   description = "ec2 key name"

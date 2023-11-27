@@ -1,4 +1,3 @@
-iam_name = "terraform-ec2-linux"
 ACCTID=215691912540
 vpc_id  = "vpc-0777935da25d06fe3"
 ami_id  = "ami-0fa399d9c130ec923"
@@ -16,7 +15,7 @@ region = "us-east-2"
 eip_allocation_id="eipalloc-0d6d0d62a857c4999"
 
 
-
+##Tags for the EC2 Instance 
 ec2_tags= {
       InstanceIP                 = "10.x.x.x",
       Name                       = "SSB-LPX-001-P",
@@ -29,7 +28,8 @@ ec2_tags= {
       DNSEntry                   = "csdasd",
       DesignDocumentLink         = "acbv"
     }
-##Tags to be passed as variables. These would be appended to the pre defined tags in variables.tf
+
+##Tags to be passed as variables. These would be appended to the pre defined tags under ec2_tags
 Environment="Dev"
 ApplicationFunctionality = "Test"
 ApplicationDescription = "To test"
@@ -40,89 +40,9 @@ BusinessTower="abc@gmail.com"
 BusinessOwner="abc@gmail.com"
 ServiceCriticality="High"
 
-######Ingress and Egress rules for the New Security Groups.The number of rules should match or be 
-ingress_rules =[
- 
-{
-      from_port   = "80"
-      to_port     = "80"
-      protocol    = "tcp"
-      cidr_block  = "192.168.161.215/32"
-      description = "test"
-    },
-    {
-      from_port   = "8084"
-      to_port     = "8084"
-      protocol    = "tcp"
-      cidr_block  = "192.168.161.215/32"
-      description = "test"
-    }
-]
 
-  
-#  {
-#     {
-#       from_port   = 80
-#       to_port     = 80
-#       protocol    = "tcp"
-#       cidr_block  = "192.168.161.215/32"
-#       description = "test"
-#     },
-#     {
-#       from_port   = 8084
-#       to_port     = 8084
-#       protocol    = "tcp"
-#       cidr_block  = "192.168.161.215/32"
-#       description = "test"
-#     },
-#  }
-    egress_rules = [
-
-        {
-        from_port   = 80
-        to_port     = 80
-        protocol    = "tcp"
-        cidr_block  = "192.168.161.215/32"
-        description = "test"
-      },
-      {
-        from_port   = 8084
-        to_port     = 8084
-        protocol    = "tcp"
-        cidr_block  = "192.168.161.215/32"
-        description = "test"
-      }
-
-    ]
-    
-    
-
-
-# egress_rules = {
-#     test-123-udp         = [124, 125, "udp", "test", "NTP"]
-#     gtg-456-tcp          = [456, 456, "tcp", "test", "Test"]
-# }
-
-# {
-#  [
-#     {
-#       from_port   = 80  
-#       to_port     = 80
-#       protocol    = "tcp"
-#       cidr_block  = "192.168.161.215/32"
-#       description = "test"
-#     },
-#     {
-#       from_port   = 8084
-#       to_port     = 8084
-#       protocol    = "tcp"
-#       cidr_block  = "192.168.161.215/32"
-#       description = "test"
-#     },
-#   ]
-# }
-
-
+##List the New Security Groups to be created and the Ingress rules for each. Naming Convention for
+#Security Groups  SG_{EC2_Instance_Name}_{Unique Number or Name}
 security_rules = {
   sg_demo1 = {
     "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" },
@@ -135,11 +55,12 @@ security_rules = {
 }
 
 
+## New Ingress Rules can be added here to the existing Security Groups
 existing_sg_rules = {
-sg-0bd541cafc1955479 = {
-"rule1" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
-},
-#sg-0294c098f15df980e = {
+# sg-0bd541cafc1955479 = {
+# "rule1" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
+# },
+sg-0294c098f15df980e = {
 #"rule1" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
 #}
 } 

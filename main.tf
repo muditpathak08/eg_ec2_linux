@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "default" {
   }
 }
 resource "aws_iam_role" "iam" {
-  name                 = var.iam_name
+  name                 = local.iam_name
   path                 = "/"
   assume_role_policy   = data.aws_iam_policy_document.default.json
   #permissions_boundary = var.permissions_boundary_arn
