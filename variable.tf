@@ -120,6 +120,12 @@ variable "root_volume_type" {
   default     = "gp2"
 }
 
+variable "Subnet_Name" {
+  type        = string
+  description = "Name of the Subnet ID for EC2 Instance"
+}
+
+
 variable "root_volume_size" {
   type        = number
   description = "Size of the root volume in gigabytes"

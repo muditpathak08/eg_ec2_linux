@@ -39,6 +39,16 @@ resource "aws_iam_instance_profile" "test_profile" {
   name = var.instance_profile_name
   role = "${aws_iam_role.iam.name}"
 }
+
+data "aws_subnet" "test" {
+  vpc_id = var.vpc_id
+
+  tags = {
+    Name = var.Subnet_Name
+  }
+}
+
+
 # module "aws_security_group" {
 #   source      = "./modules/security_group"
 #   sg_count = length(var.security_groups)
@@ -95,7 +105,7 @@ resource "aws_instance" "project-iac-ec2-linux" {
   associate_public_ip_address 		     = var.associate_public_ip_address
   iam_instance_profile                 = aws_iam_instance_profile.test_profile.name
   key_name                             = var.key_name
-  subnet_id                            = var.subnet_id
+  subnet_id                            = data.aws_subnet.test.id
   monitoring                           = var.monitoring
   private_ip                           = var.private_ip
   vpc_security_group_ids               = concat(module.new_security_group.id[*],var.security_group_ids[*])
@@ -125,6 +135,16 @@ lifecycle {
      ignore_changes = [ami]
      }
 }
+
+resource "aws_eip_association" "eip_assoc" {
+  # count = contains(["Public","public","PUBLIC"], var.Subnet_Name) ? 0 : 1
+  count       = strcontains(var.Subnet_Name, "Public") ? 1: 0
+  # count = strcontains("hello world", "wor") ? 1 : 0
+  instance_id   = aws_instance.project-iac-ec2-windows.id
+  allocation_id = var.eip_allocation_id
+}
+
+
 module "ebs_volume" {
     source = "./modules/ebs_volume"
     ebs_volumes = local.volume_count
