@@ -127,7 +127,7 @@ ApplicationTeam = var.ApplicationTeam,
 BackupSchedule =var.BackupSchedule,
 BusinessOwner = var.BusinessOwner,
 ServiceCriticality =var.ServiceCriticality,
-Subnet-id = var.subnet_id,
+Subnet-Name = var.Subnet_Name,
 VPC-id = var.vpc_id
 })
 
@@ -140,7 +140,7 @@ resource "aws_eip_association" "eip_assoc" {
   # count = contains(["Public","public","PUBLIC"], var.Subnet_Name) ? 0 : 1
   count       = strcontains(var.Subnet_Name, "Public") ? 1: 0
   # count = strcontains("hello world", "wor") ? 1 : 0
-  instance_id   = aws_instance.project-iac-ec2-windows.id
+  instance_id   = aws_instance.project-iac-ec2-linux.id
   allocation_id = var.eip_allocation_id
 }
 

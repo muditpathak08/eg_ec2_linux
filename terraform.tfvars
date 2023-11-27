@@ -13,7 +13,9 @@ security_groups = ["sg1","sg2"]
 instance_profile_name="test_profile"
 private_ip="10.0.0.9"
 region = "us-east-2"
-tags= {
+
+
+ec2_tags= {
       InstanceIP                 = "10.x.x.x",
       Name                       = "SSB-LPX-001-P",
       OperatingSystem            = "Linux Server",

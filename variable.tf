@@ -252,7 +252,7 @@ variable "recover_actions_alarm" {
   description = "A list of actions to take when alarms are triggered. Will likely be an SNS topic for event distribution."
 }
 
-variable "tags" {
+variable "ec2_tags" {
     description = "Tags for WIndows Ec2 instances"
     type        = map(string)
   }
