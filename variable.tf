@@ -413,6 +413,11 @@ variable "efs_tags" {
   }
 
 
+  variable "snapshot_id" {
+  description = "(Optional) A snapshot to base the EBS volume off of"
+  type        = string
+  default     = ""
+}
 
 
 
