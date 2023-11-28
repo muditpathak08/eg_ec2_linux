@@ -405,6 +405,14 @@ variable "existing_sg_rules" {
     }
 
 
+variable "efs_tags" {
+    default = {
+    }
+    description = "Tags for EFS Volume"
+    type        = map(string)
+  }
+
+
 
 
 
