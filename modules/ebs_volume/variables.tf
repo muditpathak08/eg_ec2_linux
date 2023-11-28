@@ -62,7 +62,6 @@ variable "ebs_volume_tags" {
 }
 
 
-
 variable "efs_tags" {
     default = {
     }
