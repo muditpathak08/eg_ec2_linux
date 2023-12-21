@@ -95,18 +95,8 @@ resource "aws_eip_association" "eip_assoc" {
 }
 
 
-# module "ebs_volume" {
-#     source = "./modules/ebs_volume"
-#     ebs_volumes = local.volume_count
-#     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
-#     efs_tags = var.efs_tags
-
-#     # ... omitted
-#   }
-
-
 module "ebs_volume" {
-    source = "./modules/ebs_volume_new"
+    source = "./modules/ebs_volume"
     
     ebs_volumes = var.ebs_volume_count
     azs =   var.availability_zone
@@ -117,15 +107,6 @@ module "ebs_volume" {
     instance_id = aws_instance.project-iac-ec2-linux.id
     # ... omitted
   }
-
-# resource "aws_volume_attachment" "project-iac-volume-attachment" {
-#   count = var.ebs_volume_count
-#   device_name = var.ebs_device_name[count.index]
-#   # volume_id   = aws_ebs_volume.project-iac-ebs[count.index].id
-#   volume_id   = module.ebs_volume[*].id
-#   instance_id = var.instance_id
-# }
-
 
 
 resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {

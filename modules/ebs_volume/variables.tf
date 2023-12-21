@@ -91,26 +91,12 @@ variable "kms_key_id" {
 
 
 variable "efs_tags" {
-    # default = {
-    #   BusinessOwner              = "test@hotstar.com"
-    #   Name                       = "SSB-WPX-001-P"
-    #   OperatingSystem            = "Windows Server 2022"
-    #   OperatingSystemSupportTeam = "test@hotmail.com"
-    #   scheduler                  = "ec2-startstop"
-    #   ServerProcess              = "service MS "
-    #   ServerRoleType             = "Application"
-    #   Subnet-id                  = "subnet-04eff055558594bd7"
-    #   VPC-id                     = "vpc-0419802ed12eec58a"
-    #   TicketReference            = "CHG0050760"
-    #   DNSEntry                   = "csdasd"
-    #   DesignDocumentLink         = "acbv"
-    # }
     description = "Tags for WIndows Ec2 instances"
     type        = map(string)
   }
 
 variable "instance_id" {
   description = "ID of the Instance created"
-  type        =  string
-  default     = ""
+  type        =  number
+  default     = 0
 }
