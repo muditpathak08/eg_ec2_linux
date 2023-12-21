@@ -111,6 +111,7 @@ module "ebs_volume" {
     ebs_volumes = var.ebs_volume_count
     azs =   var.availability_zone
     size= var.size
+    ebs_device_name = var.ebs_device_name
     
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
     efs_tags = var.efs_tags
