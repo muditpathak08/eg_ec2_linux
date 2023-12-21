@@ -108,3 +108,9 @@ variable "efs_tags" {
     description = "Tags for WIndows Ec2 instances"
     type        = map(string)
   }
+
+variable "instance_id" {
+  description = "ID of the Instance created"
+  type        =  string
+  default     = ""
+}

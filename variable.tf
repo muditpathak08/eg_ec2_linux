@@ -415,3 +415,10 @@ variable "size" {
   type        = list(number)
   default     = []
 }
+
+#Size of the EBS needed to be created
+variable "instance_id" {
+  description = "ID of the Instance created"
+  type        =  string
+  default     = ""
+}
