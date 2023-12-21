@@ -121,7 +121,7 @@ resource "aws_volume_attachment" "project-iac-volume-attachment" {
   count = var.ebs_volume_count
   device_name = var.ebs_device_name[count.index]
   # volume_id   = aws_ebs_volume.project-iac-ebs[count.index].id
-  volume_id   = module.ebs_volume.id[*]
+  volume_id   = module.ebs_volume.ebs_volume_id[*]
   instance_id = var.instance_id
 }
 
