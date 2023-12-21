@@ -18,12 +18,12 @@ resource "aws_ebs_volume" "project-iac-ebs" {
 }
 
 
-# resource "aws_volume_attachment" "project-iac-volume-attachment" {
-#   count = var.ebs_volumes
-#   device_name = var.ebs_device_name[count.index]
-#   volume_id   = aws_ebs_volume.project-iac-ebs[count.index].id
-#   instance_id = var.instance_id
-# }
+resource "aws_volume_attachment" "project-iac-volume-attachment" {
+  count = var.ebs_volumes
+  device_name = var.ebs_device_name[count.index]
+  volume_id   = aws_ebs_volume.project-iac-ebs[count.index].id
+  instance_id = var.instance_id
+}
 
 
 
