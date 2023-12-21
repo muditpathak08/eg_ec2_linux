@@ -419,6 +419,6 @@ variable "size" {
 #Size of the EBS needed to be created
 variable "instance_id" {
   description = "ID of the Instance created"
-  type        =  number
-  default     = 0
+  type        =  string
+  default     = ""
 }

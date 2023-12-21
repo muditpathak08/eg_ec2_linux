@@ -33,8 +33,8 @@ snapshot_id=""
 ##This should match the Count of EBS_Volumes.Also each EBS would be created in the azs specified
 # with one to one mapping
 # Do not use "/dev/xvda" as this is default mount for root volume
-ebs_device_name=["/dev/xvdv","/dev/xvdc","/dev/xvdb"]
-size = [20,30,40]
+ebs_device_name=["/dev/xvdv","/dev/xvdc","/dev/xvdb","/dev/xvde"]
+size = [20,30,40,50]
 
 
   ##Tags for the EC2 Instance 
