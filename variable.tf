@@ -420,5 +420,5 @@ variable "size" {
 variable "instance_id" {
   description = "ID of the Instance created"
   type        =  number
-  # default     = ""
+  default     = 0
 }
