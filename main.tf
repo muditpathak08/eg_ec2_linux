@@ -115,9 +115,6 @@ module "ebs_volume" {
     
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
     efs_tags = var.efs_tags
-    depends_on = [aws_instance.project-iac-ec2-linux]
-
-
     # ... omitted
   }
 

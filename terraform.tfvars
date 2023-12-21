@@ -9,12 +9,13 @@ key_name  ="key_pair_terraform"
 
 #Name of the Subnet where EC2 Instance to be created
 Subnet_Name="Public-subnet-2a"
+
 root_volume_type ="gp2"
 root_volume_size ="10"
 instance_profile_name="test_profile"
 
 #Static Private IP to be attached to EC2. Should be withing CIDR range of Subnet
-private_ip="10.0.0.9"
+private_ip="10.0.0.20"
 region = "us-east-2"
 
 #Allocation ID of the Elastic IP to be attached
