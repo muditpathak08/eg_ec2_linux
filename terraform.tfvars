@@ -11,7 +11,6 @@ key_name  ="key_pair_terraform"
 Subnet_Name="Public-subnet-2a"
 root_volume_type ="gp2"
 root_volume_size ="10"
-ebs_volume_count ="2"
 instance_profile_name="test_profile"
 
 #Static Private IP to be attached to EC2. Should be withing CIDR range of Subnet
@@ -21,8 +20,21 @@ region = "us-east-2"
 #Allocation ID of the Elastic IP to be attached
 eip_allocation_id="eipalloc-0d6d0d62a857c4999"
 
+
+
+ebs_volume_count ="3"
 ##Provide this only if EBS to be created from Snapshot Id. Else leave this Blank
 snapshot_id=""
+
+##Availibility-Zone of the Volume must be the same as that of the Instance
+azs=["us-east-2a","us-east-2a","us-east-2a"]
+
+
+##This should match the Count of EBS_Volumes.Also each EBS would be created in the azs specified
+# with one to one mapping
+# Do not use "/dev/xvda" as this is default mount for root volume
+ebs_device_name=["/dev/xvdv","/dev/xvdc","/dev/xvdb"]
+size = [20,30,40]
 
 
   ##Tags for the EC2 Instance 

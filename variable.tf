@@ -274,7 +274,8 @@ variable "awsprops" {
   variable "ebs_device_name" {
   type        = list(string)
   description = "Name of the EBS device to mount"
-  default     = ["/dev/xvdb", "/dev/xvdc", "/dev/xvdd", "/dev/xvde", "/dev/xvdf", "/dev/xvdg", "/dev/xvdh", "/dev/xvdi", "/dev/xvdj", "/dev/xvdk", "/dev/xvdl", "/dev/xvdm", "/dev/xvdn", "/dev/xvdo", "/dev/xvdp", "/dev/xvdq", "/dev/xvdr", "/dev/xvds", "/dev/xvdt", "/dev/xvdu", "/dev/xvdv", "/dev/xvdw", "/dev/xvdx", "/dev/xvdy", "/dev/xvdz"]
+  default = [""]
+  # default     = ["/dev/xvdb", "/dev/xvdc", "/dev/xvdd", "/dev/xvde", "/dev/xvdf", "/dev/xvdg", "/dev/xvdh", "/dev/xvdi", "/dev/xvdj", "/dev/xvdk", "/dev/xvdl", "/dev/xvdm", "/dev/xvdn", "/dev/xvdo", "/dev/xvdp", "/dev/xvdq", "/dev/xvdr", "/dev/xvds", "/dev/xvdt", "/dev/xvdu", "/dev/xvdv", "/dev/xvdw", "/dev/xvdx", "/dev/xvdy", "/dev/xvdz"]
 
 }
 
@@ -397,3 +398,20 @@ variable "efs_tags" {
 
 
 
+
+
+
+#AWS Availability zone where resources are created
+variable "azs" {
+  description = "(Required) The AZs where the EBS volume will exist"
+  type        = list(string)
+  default     = [""]
+}
+
+
+#Size of the EBS needed to be created
+variable "size" {
+  description = "(Optional) The size of the drive in GiBs"
+  type        = list(number)
+  default     = []
+}

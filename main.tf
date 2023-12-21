@@ -95,17 +95,31 @@ resource "aws_eip_association" "eip_assoc" {
 }
 
 
+# module "ebs_volume" {
+#     source = "./modules/ebs_volume"
+#     ebs_volumes = local.volume_count
+#     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
+#     efs_tags = var.efs_tags
+
+#     # ... omitted
+#   }
+
+
 module "ebs_volume" {
-    source = "./modules/ebs_volume"
-    ebs_volumes = local.volume_count
+    source = "./modules/ebs_volume_new"
+    
+    ebs_volumes = var.ebs_volume_count
+    azs =   "us-east-2a"
+    size= var.size
+    
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
-    efs_tags = var.efs_tags
+    # efs_tags = var.efs_tags
 
     # ... omitted
   }
 
 resource "aws_volume_attachment" "project-iac-volume-attachment" {
-  count       = local.volume_count
+  count       = var.ebs_volume_count
   device_name = var.ebs_device_name[count.index]
   volume_id   = module.ebs_volume.ebs_volume_id[count.index]
   instance_id = aws_instance.project-iac-ec2-linux.id
