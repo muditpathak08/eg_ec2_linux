@@ -8,11 +8,13 @@ resource "aws_ebs_volume" "project-iac-ebs" {
   type              = var.type
   kms_key_id        = var.kms_key_id
 
-  # tags = merge(tomap(var.ebs_volume_tags),{ApplicationOwner = var.ApplicationOwner, 
+  # tags = merge(tomap(var.efs_tags),{ApplicationOwner = var.ApplicationOwner, 
   #     ApplicationTeam= var.ApplicationTeam, 
   #     BackupSchedule = var.BackupSchedule, 
   #     BusinessTower=var.BusinessTower
   #     ServiceCriticality = var.ServiceCriticality})
+
+  tags = var.efs_tags
 }
 
 

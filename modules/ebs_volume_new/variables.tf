@@ -34,80 +34,6 @@ variable "create_from_snapshot" {
 
 
 
-
-
-variable "ApplicationOwner" {
-  description = "Owner of the Application"
-  type        = string
-  default     = ""
-
-  validation {
-   condition     = contains(["abc@hotmail.com", "abc@gmail.com"], var.ApplicationOwner)
-   error_message = "Please provide a valid Application Owner"
- }
-}
-
-
-
-variable "ApplicationTeam" {
-  description = "Owner of the Application"
-  type        = string
-  default     = ""
-
-  validation {
-   condition     = contains(["Team1","Team2"], var.ApplicationTeam)
-   error_message = "Please provide a valid Application Team"
- }
-}
-
-
-variable "BackupSchedule" {
-  description = "BackupScheduled of the Volume"
-  type        = string
-  default     = ""
-
-  validation {
-   condition     = contains(["DR7y","DR1y","DR1m"], var.BackupSchedule)
-   error_message = "Please provide a valid BackupSchedule. Valid values are DR7y,DR1y and DR1m"
- }
-}
-
-
-variable "BusinessTower" {
-  description = "Business Tower"
-  type        = string
-  default     = ""
-
-  validation {
-   condition     = contains(["abc@gmail.com","xyz@gmail.com"], var.BusinessTower)
-   error_message = "Please provide a valid BusinessTower"
- }
-}
-
-
-variable "ServiceCriticality" {
-  description = "Business Criticality of the Service"
-  type        = string
-  default     = ""
-
-  validation {
-   condition     = contains(["High","Low"," Medium"], var.ServiceCriticality)
-   error_message = "Please provide a valid Service Criticality, Valid values are High, Low and Medium"
- }
-}
-
-variable "Environment" {
-  type    = string
-  default = "Dev"
-
-validation {
-   condition     = contains(["Dev", "Test" ,"Sandbox", "Staging", "Production"], var.Environment)
-   error_message = "Please provide a valid value for variable Envrionment. Allowed values are Dev, Test, Sandbox, Staging and Production"
- }
-}
-
-
-
 variable "ebs_device_name" {
   type        = list(string)
   description = "Name of the EBS device to mount"
@@ -164,21 +90,21 @@ variable "kms_key_id" {
 }
 
 
-variable "ebs_volume_tags" {
-    default = {
-      BusinessOwner              = "test@hotstar.com"
-      Name                       = "SSB-WPX-001-P"
-      OperatingSystem            = "Windows Server 2022"
-      OperatingSystemSupportTeam = "test@hotmail.com"
-      scheduler                  = "ec2-startstop"
-      ServerProcess              = "service MS "
-      ServerRoleType             = "Application"
-      Subnet-id                  = "subnet-04eff055558594bd7"
-      VPC-id                     = "vpc-0419802ed12eec58a"
-      TicketReference            = "CHG0050760"
-      DNSEntry                   = "csdasd"
-      DesignDocumentLink         = "acbv"
-    }
+variable "efs_tags" {
+    # default = {
+    #   BusinessOwner              = "test@hotstar.com"
+    #   Name                       = "SSB-WPX-001-P"
+    #   OperatingSystem            = "Windows Server 2022"
+    #   OperatingSystemSupportTeam = "test@hotmail.com"
+    #   scheduler                  = "ec2-startstop"
+    #   ServerProcess              = "service MS "
+    #   ServerRoleType             = "Application"
+    #   Subnet-id                  = "subnet-04eff055558594bd7"
+    #   VPC-id                     = "vpc-0419802ed12eec58a"
+    #   TicketReference            = "CHG0050760"
+    #   DNSEntry                   = "csdasd"
+    #   DesignDocumentLink         = "acbv"
+    # }
     description = "Tags for WIndows Ec2 instances"
     type        = map(string)
   }
