@@ -182,11 +182,3 @@ variable "ebs_volume_tags" {
     description = "Tags for WIndows Ec2 instances"
     type        = map(string)
   }
-
-
-variable "type" {
-  description = "(Optional) The type of EBS volume"
-  type        = string
-  default     = "standard"
-}
-
