@@ -115,17 +115,11 @@ module "ebs_volume" {
     
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
     efs_tags = var.efs_tags
+    depends_on = [aws_instance.project-iac-ec2-linux]
+
 
     # ... omitted
   }
-
-resource "aws_volume_attachment" "project-iac-volume-attachment" {
-  count       = var.ebs_volume_count
-  device_name = var.ebs_device_name[count.index]
-  volume_id   = module.ebs_volume.ebs_volume_id[count.index]
-  instance_id = aws_instance.project-iac-ec2-linux.id
-}
-
 
 
 
