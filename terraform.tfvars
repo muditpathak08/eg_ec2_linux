@@ -26,8 +26,7 @@ ebs_volume_count ="3"
 ##Provide this only if EBS to be created from Snapshot Id. Else leave this Blank
 snapshot_id=""
 
-##Availibility-Zone of the Volume must be the same as that of the Instance
-azs=["us-east-2a","us-east-2a","us-east-2a"]
+
 
 
 ##This should match the Count of EBS_Volumes.Also each EBS would be created in the azs specified

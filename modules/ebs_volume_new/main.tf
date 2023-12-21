@@ -1,6 +1,6 @@
 resource "aws_ebs_volume" "project-iac-ebs" {
   count = var.ebs_volumes
-  availability_zone = var.azs[count.index]
+  availability_zone = var.azs
   encrypted         = var.encrypted
   # iops              = "${var.iops}"
   size              = var.size[count.index]

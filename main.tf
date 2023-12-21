@@ -109,7 +109,7 @@ module "ebs_volume" {
     source = "./modules/ebs_volume_new"
     
     ebs_volumes = var.ebs_volume_count
-    azs =   ["us-east-2a"]
+    azs =   var.availability_zone
     size= var.size
     
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot

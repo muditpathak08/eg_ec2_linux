@@ -7,8 +7,8 @@ variable "region" {
 #AWS Availability zone where resources are created
 variable "azs" {
   description = "(Required) The AZs where the EBS volume will exist"
-  type        = list(string)
-  default     = [""]
+  type        = string
+  default     = ""
 }
 
 variable "INSTANCE_ID" {
