@@ -97,6 +97,6 @@ variable "efs_tags" {
 
 variable "instance_id" {
   description = "ID of the Instance created"
-  type        =  number
-  default     = 0
+  type        =  string
+  default     = ""
 }
