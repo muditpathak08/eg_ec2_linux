@@ -1,21 +1,21 @@
 ##AWS Account ID
 ACCTID=215691912540
 
-vpc_id  = "vpc-0777935da25d06fe3"
+vpc_id  = "vpc-0845479fd68896d42"
 ami_id  = "ami-0fa399d9c130ec923"
 availability_zone = "us-east-2a"
 instance_type = "t2.nano"
 key_name  ="key_pair_terraform"
 
 #Name of the Subnet where EC2 Instance to be created
-Subnet_Name="Public-subnet-2a"
+Subnet_Name="10.41.10.0-terraform-private-us-east-2a"
 
 root_volume_type ="gp2"
 root_volume_size ="10"
 instance_profile_name="test_profile"
 
 #Static Private IP to be attached to EC2. Should be withing CIDR range of Subnet
-private_ip="10.0.0.20"
+private_ip="10.41.20.10"
 region = "us-east-2"
 
 #Allocation ID of the Elastic IP to be attached

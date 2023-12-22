@@ -43,10 +43,10 @@ module "new_security_group" {
 }
 
 
-module "existing_sg_rules" {
-  source = "./modules/existing_sg_rules"
-  existing_sg_rules = local.existing_sg_rules
-}
+# module "existing_sg_rules" {
+#   source = "./modules/existing_sg_rules"
+#   existing_sg_rules = local.existing_sg_rules
+# }
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
@@ -60,7 +60,8 @@ resource "aws_instance" "project-iac-ec2-linux" {
   subnet_id                            = data.aws_subnet.test.id
   monitoring                           = var.monitoring
   private_ip                           = var.private_ip
-  vpc_security_group_ids               = concat(module.new_security_group.id[*],var.security_group_ids[*])
+  # vpc_security_group_ids               = concat(module.new_security_group.id[*],var.security_group_ids[*])
+  vpc_security_group_ids               = concat(module.new_security_group.id[*])
   root_block_device {
     volume_type           = var.root_volume_type
     volume_size           = var.root_volume_size
