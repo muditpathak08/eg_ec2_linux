@@ -89,7 +89,7 @@ lifecycle {
 }
 
 resource "aws_eip_association" "eip_assoc" {
-  count       = strcontains(var.Subnet_Name, "Public") ? 1: 0
+  count       = strcontains(var.Subnet_Name, "public") ? 1: 0
   instance_id   = aws_instance.project-iac-ec2-linux.id
   allocation_id = var.eip_allocation_id
 }
