@@ -15,7 +15,7 @@ root_volume_size ="10"
 instance_profile_name="test_profile"
 
 #Static Private IP to be attached to EC2. Should be withing CIDR range of Subnet
-private_ip="10.0.0.20"
+private_ip="10.0.0.10"
 region = "us-east-2"
 
 #Allocation ID of the Elastic IP to be attached
