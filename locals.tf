@@ -11,11 +11,11 @@ locals {
   security_rules = {
   join("-", ["SG", lookup(var.ec2_tags , "Name"), "InstanceSecurityGroup", "1"]) = {
     "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" },
-    "rule2" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["10.10.0.18/0"], description = "For SSH" },
-    "rule3" = { type = "egress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["10.0.0.19/0"], description = "For SSH" }
+    "rule2" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["10.0.0.16/28"], description = "For SSH" },
+    "rule3" = { type = "egress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["10.0.0.16/28"], description = "For SSH" }
   }
   join("-", ["SG", lookup(var.ec2_tags , "Name"), "InstanceSecurityGroup", "2"]) = {
-    "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp" , cidr_blocks = ["10.10.0.20/0"], description = "For SSH"}
+    "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp" , cidr_blocks = ["10.0.0.16/28"], description = "For SSH"}
   }
 }
 
