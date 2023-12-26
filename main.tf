@@ -60,8 +60,7 @@ resource "aws_instance" "project-iac-ec2-linux" {
   subnet_id                            = data.aws_subnet.test.id
   monitoring                           = var.monitoring
   private_ip                           = var.private_ip
-  # vpc_security_group_ids               = concat(module.new_security_group.id[*],var.security_group_ids[*])
-  vpc_security_group_ids               = concat(module.new_security_group.id[*])
+  vpc_security_group_ids               = concat(module.new_security_group.id[*],var.security_group_ids[*])
   root_block_device {
     volume_type           = var.root_volume_type
     volume_size           = var.root_volume_size
