@@ -23,7 +23,7 @@ eip_allocation_id="eipalloc-0d6d0d62a857c4999"
 
 
 
-ebs_volume_count ="4"
+ebs_volume_count ="2"
 ##Provide this only if EBS to be created from Snapshot Id. Else leave this Blank
 snapshot_id=""
 
