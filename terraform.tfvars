@@ -11,7 +11,7 @@ key_name  ="key_pair_terraform"
 Subnet_Name="private-subnet-2a"
 
 root_volume_type ="gp2"
-root_volume_size ="10"
+root_volume_size ="20"
 instance_profile_name="test_profile"
 
 #Static Private IP to be attached to EC2. Should be withing CIDR range of Subnet
