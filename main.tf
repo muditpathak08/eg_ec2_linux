@@ -43,13 +43,13 @@ module "new_security_group" {
 }
 
 
-data "aws_instance" "foo" {
-  count = var.aws_ec2_instance == false ? 1 : 0
-  filter {
-    name   = "tag:Name"
-    values = ["SSB-LPX-001-P"]
-  }
-}
+# data "aws_instance" "foo" {
+#   count = var.aws_ec2_instance == false ? 1 : 0
+#   filter {
+#     name   = "tag:Name"
+#     values = ["SSB-LPX-001-P"]
+#   }
+# }
 
 # module "existing_sg_rules" {
 #   source = "./modules/existing_sg_rules"
@@ -58,7 +58,6 @@ data "aws_instance" "foo" {
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
-  count = var.aws_ec2_instance ? 1: 0
   ami                                  = var.ami_id
   availability_zone                    = var.availability_zone
   instance_type                        = var.instance_type
@@ -99,7 +98,7 @@ lifecycle {
 
 resource "aws_eip_association" "eip_assoc" {
   count       = strcontains(var.Subnet_Name, "public") ? 1: 0
-  instance_id   = aws_instance.project-iac-ec2-linux[count.index].id
+  instance_id   = aws_instance.project-iac-ec2-linux.id
   allocation_id = var.eip_allocation_id
 }
 
@@ -113,7 +112,7 @@ module "ebs_volume" {
     ebs_device_name = var.ebs_device_name
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
     efs_tags = var.efs_tags
-    instance_id = aws_instance.project-iac-ec2-linux[count.index].id
+    instance_id = aws_instance.project-iac-ec2-linux.id
     # ... omitted
   }
 
@@ -134,7 +133,7 @@ resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
   alarm_actions             = var.reboot_actions_alarm
   ok_actions                = local.reboot_actions_ok
     dimensions = {
-        InstanceId = aws_instance.project-iac-ec2-linux[*].id
+        InstanceId = aws_instance.project-iac-ec2-linux.id
       }
   }
 resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
@@ -151,6 +150,6 @@ resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
   alarm_actions             = var.recover_actions_alarm
   ok_actions                = local.recover_actions_ok
     dimensions = {
-        InstanceId = aws_instance.project-iac-ec2-linux[*].id
+        InstanceId = aws_instance.project-iac-ec2-linux.id
       }
   }

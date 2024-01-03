@@ -428,11 +428,3 @@ variable "instance_id" {
 
 
 
-
-
-
-
-variable "aws_ec2_instance" {
-    type = bool
-    default = false
-}
