@@ -99,7 +99,7 @@ lifecycle {
 
 resource "aws_eip_association" "eip_assoc" {
   count       = strcontains(var.Subnet_Name, "public") ? 1: 0
-  instance_id   = aws_instance.project-iac-ec2-linux.id[count.index]
+  instance_id   = aws_instance.project-iac-ec2-linux[count.index].id
   allocation_id = var.eip_allocation_id
 }
 
@@ -113,7 +113,7 @@ module "ebs_volume" {
     ebs_device_name = var.ebs_device_name
     snapshot_id       = var.snapshot_id  ## To be set if Volume to be created from Snapshot
     efs_tags = var.efs_tags
-    instance_id = aws_instance.project-iac-ec2-linux.id[count.index]
+    instance_id = aws_instance.project-iac-ec2-linux[count.index].id
     # ... omitted
   }
 
@@ -134,7 +134,7 @@ resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
   alarm_actions             = var.reboot_actions_alarm
   ok_actions                = local.reboot_actions_ok
     dimensions = {
-        InstanceId = aws_instance.project-iac-ec2-linux.id[count.index]
+        InstanceId = aws_instance.project-iac-ec2-linux[count.index].id
       }
   }
 resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
@@ -151,6 +151,6 @@ resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
   alarm_actions             = var.recover_actions_alarm
   ok_actions                = local.recover_actions_ok
     dimensions = {
-        InstanceId = aws_instance.project-iac-ec2-linux.id[count.index]
+        InstanceId = aws_instance.project-iac-ec2-linux[count.index].id
       }
   }
