@@ -134,7 +134,7 @@ resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
   alarm_actions             = var.reboot_actions_alarm
   ok_actions                = local.reboot_actions_ok
     dimensions = {
-        InstanceId = aws_instance.project-iac-ec2-linux[count.index].id
+        InstanceId = aws_instance.project-iac-ec2-linux[*].id
       }
   }
 resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
@@ -151,6 +151,6 @@ resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
   alarm_actions             = var.recover_actions_alarm
   ok_actions                = local.recover_actions_ok
     dimensions = {
-        InstanceId = aws_instance.project-iac-ec2-linux[count.index].id
+        InstanceId = aws_instance.project-iac-ec2-linux[*].id
       }
   }
