@@ -28,7 +28,7 @@ output "name" {
 
 output "security_group_ids" {
   description = "IDs on the AWS Security Groups associated with the instance"
-  value = aws_instance.project-iac-ec2-linux.vpc_security_group_ids
+  value = aws_instance.project-iac-ec2-linux[count.index].vpc_security_group_ids
   
 }
 
