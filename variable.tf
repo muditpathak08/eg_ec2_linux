@@ -422,3 +422,16 @@ variable "instance_id" {
   type        =  string
   default     = ""
 }
+
+
+
+
+
+
+
+
+
+
+variable "aws_ec2_instance" {
+    type = bool
+}

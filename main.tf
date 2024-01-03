@@ -43,6 +43,14 @@ module "new_security_group" {
 }
 
 
+data "aws_instance" "foo" {
+  count = var.aws_ec2_instance == false ? 1 : 0
+  filter {
+    name   = "tag:Name"
+    values = ["SSB-LPX-001-P"]
+  }
+}
+
 # module "existing_sg_rules" {
 #   source = "./modules/existing_sg_rules"
 #   existing_sg_rules = local.existing_sg_rules
@@ -50,6 +58,7 @@ module "new_security_group" {
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
+  count = var.aws_ec2_instance ? 1: 0
   ami                                  = var.ami_id
   availability_zone                    = var.availability_zone
   instance_type                        = var.instance_type
