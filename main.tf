@@ -14,6 +14,7 @@ data "aws_iam_policy_document" "default" {
   }
 }
 resource "aws_iam_role" "iam" {
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   name                 = local.iam_name
   path                 = "/"
   assume_role_policy   = data.aws_iam_policy_document.default.json
@@ -22,6 +23,7 @@ resource "aws_iam_role" "iam" {
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   name = var.instance_profile_name
   role = "${aws_iam_role.iam.name}"
 }
@@ -37,6 +39,7 @@ data "aws_subnet" "test" {
 
 
 module "new_security_group" {
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   source = "./modules/security_group_new"
   security_rules = local.security_rules  
   vpc_id = var.vpc_id
