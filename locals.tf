@@ -12,8 +12,8 @@ locals {
   join("-", ["SG", lookup(var.ec2_tags , "Name"), "InstanceSecurityGroup", "1"]) = {
     "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" },
     "rule2" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["10.0.0.16/28"], description = "For SSH" },
-    "rule2" = { type = "ingress", from_port = 567, to_port = 567, protocol = "tcp", cidr_blocks = ["10.0.0.16/30"], description = "Testing New Ingress" },
-    "rule3" = { type = "egress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["10.0.0.16/28"], description = "For SSH" }
+    "rule3" = { type = "ingress", from_port = 567, to_port = 567, protocol = "tcp", cidr_blocks = ["10.0.0.16/30"], description = "Testing New Ingress" },
+    "rule4" = { type = "egress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["10.0.0.16/28"], description = "For SSH" }
   }
   join("-", ["SG", lookup(var.ec2_tags , "Name"), "InstanceSecurityGroup", "2"]) = {
     "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp" , cidr_blocks = ["10.0.0.16/28"], description = "For SSH"}
