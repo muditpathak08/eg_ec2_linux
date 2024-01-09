@@ -36,11 +36,11 @@ snapshot_id=""
 ebs_device_name=["/dev/xvdv","/dev/xvdc"]
 size = [20,30]
 
-
+aws_ec2_name = "Mudittest"
   ##Tags for the EC2 Instance 
   ec2_tags= {
         InstanceIP                 = "10.x.x.x",
-        Name                       = "SSB-LPX-001-P",
+        # Name                       = "SSB-LPX-001-P",
         OperatingSystem            = "Linux Server",
         OperatingSystemSupportTeam = "test@hotmail.com",
         scheduler                  = "ec2-startstop",

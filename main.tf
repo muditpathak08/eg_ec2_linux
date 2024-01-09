@@ -46,7 +46,7 @@ module "new_security_group" {
 data "aws_instances" "test" {
   filter {
     name   = "tag:Name"
-    values = ["SaranyaTest"]
+    values = ["${var.aws_ec2_name}"]
   }
 }
 
@@ -88,6 +88,7 @@ BackupSchedule =var.BackupSchedule,
 BusinessOwner = var.BusinessOwner,
 ServiceCriticality =var.ServiceCriticality,
 Subnet-Name = var.Subnet_Name,
+Name = var.aws_ec2_name,
 VPC-id = var.vpc_id
 })
 
