@@ -425,6 +425,8 @@ variable "instance_id" {
 
 
 
-
-
-
+variable "aws_ec2_instance" {
+  type        = bool
+  description = "Chek if EC2 with same name exists"
+  default     = true
+}

@@ -43,13 +43,13 @@ module "new_security_group" {
 }
 
 
-# data "aws_instance" "foo" {
-#   count = var.aws_ec2_instance == false ? 1 : 0
-#   filter {
-#     name   = "tag:Name"
-#     values = ["SSB-LPX-001-P"]
-#   }
-# }
+data "aws_instance" "foo" {
+  count = var.aws_ec2_instance == false ? 1 : 0
+  filter {
+    name   = "tag:Name"
+    values = ["SaranyaTest"]
+  }
+}
 
 # module "existing_sg_rules" {
 #   source = "./modules/existing_sg_rules"

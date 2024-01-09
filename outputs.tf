@@ -74,3 +74,7 @@ output "security_group_id" {
 
 
 
+output "aws_ec2" {
+  description = "ID of the EC2 instance"
+  value       = aws_instance.foo.id
+}
