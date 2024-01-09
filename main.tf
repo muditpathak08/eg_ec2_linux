@@ -46,7 +46,7 @@ module "new_security_group" {
 data "aws_instances" "test" {
   filter {
     name   = "tag:Name"
-    values = ["SSB-LPX-001-P"]
+    values = ["SaranyaTest"]
   }
 }
 
@@ -104,8 +104,8 @@ resource "aws_eip_association" "eip_assoc" {
 
 
 module "ebs_volume" {
+    count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
     source = "./modules/ebs_volume"
-    
     ebs_volumes = var.ebs_volume_count
     azs =   var.availability_zone
     size= var.size
@@ -118,6 +118,7 @@ module "ebs_volume" {
 
 
 resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   alarm_name                = "RebootAlarm"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        =  var.reboot_evaluation_period
@@ -137,6 +138,7 @@ resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
       }
   }
 resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   alarm_name                = "RecoverAlarm"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        =  var.recover_evaluation_period
