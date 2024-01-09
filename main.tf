@@ -25,7 +25,7 @@ resource "aws_iam_role" "iam" {
 resource "aws_iam_instance_profile" "test_profile" {
   count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   name = var.instance_profile_name
-  role = "${aws_iam_role.iam[*].name}"
+  role = "${aws_iam_role.iam[0].name}"
 }
 
 data "aws_subnet" "test" {
