@@ -14,7 +14,6 @@ data "aws_iam_policy_document" "default" {
   }
 }
 resource "aws_iam_role" "iam" {
-  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   name                 = local.iam_name
   path                 = "/"
   assume_role_policy   = data.aws_iam_policy_document.default.json
@@ -23,9 +22,8 @@ resource "aws_iam_role" "iam" {
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
-  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   name = var.instance_profile_name
-  role = "${aws_iam_role.iam[0].name}"
+  role = "${aws_iam_role.iam.name}"
 }
 
 data "aws_subnet" "test" {
@@ -39,7 +37,6 @@ data "aws_subnet" "test" {
 
 
 module "new_security_group" {
-  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   source = "./modules/security_group_new"
   security_rules = local.security_rules  
   vpc_id = var.vpc_id
@@ -71,7 +68,7 @@ resource "aws_instance" "project-iac-ec2-linux" {
   subnet_id                            = data.aws_subnet.test.id
   monitoring                           = var.monitoring
   private_ip                           = var.private_ip
-  vpc_security_group_ids               = concat(module.new_security_group[*].id[*],var.security_group_ids[*])
+  vpc_security_group_ids               = concat(module.new_security_group.id[*],var.security_group_ids[*])
   root_block_device {
     volume_type           = var.root_volume_type
     volume_size           = var.root_volume_size
