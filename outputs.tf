@@ -34,7 +34,7 @@ output "security_group_ids" {
 
 output "role" {
   description = "Name of AWS IAM Role associated with the instance"
-  value       = aws_iam_role.iam.name
+  value       = aws_iam_role.iam[*].name
 }
 
 output "role_arn" {
