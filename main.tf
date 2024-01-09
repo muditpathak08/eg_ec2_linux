@@ -44,10 +44,10 @@ module "new_security_group" {
 
 
 data "aws_instance" "foo" {
-  count = var.aws_ec2_instance == false ? 1 : 0
+  count = var.aws_ec2_instance == true ? 1 : 0
   filter {
     name   = "tag:Name"
-    values = ["SaranyaTest"]
+    values = var.ec2_tags.Name
   }
 }
 
