@@ -66,7 +66,7 @@ resource "aws_instance" "project-iac-ec2-linux" {
   instance_type                        = var.instance_type
   disable_api_termination              = false
   associate_public_ip_address 		     = var.associate_public_ip_address
-  iam_instance_profile                 = aws_iam_instance_profile.test_profile.name
+  iam_instance_profile                 = aws_iam_instance_profile.test_profile[*].name
   key_name                             = var.key_name
   subnet_id                            = data.aws_subnet.test.id
   monitoring                           = var.monitoring
