@@ -46,7 +46,7 @@ module "new_security_group" {
 data "aws_instances" "test" {
   filter {
     name   = "tag:Name"
-    values = ["SaranyaTest"]
+    values = ["SSB-LPX-001-P"]
   }
 }
 
