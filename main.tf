@@ -43,7 +43,7 @@ module "new_security_group" {
 }
 
 
-data "aws_instance" "test" {
+data "aws_instances" "test" {
   filter {
     name   = "tag:Name"
     values = ["SaranyaTest"]
