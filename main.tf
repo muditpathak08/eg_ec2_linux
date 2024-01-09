@@ -43,11 +43,10 @@ module "new_security_group" {
 }
 
 
-data "aws_instance" "foo" {
-  count = var.aws_ec2_instance == true ? 1 : 0
+data "aws_instance" "test" {
   filter {
     name   = "tag:Name"
-    values = var.ec2_tags.Name
+    values = ["SaranyaTest"]
   }
 }
 
@@ -58,6 +57,7 @@ data "aws_instance" "foo" {
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   ami                                  = var.ami_id
   availability_zone                    = var.availability_zone
   instance_type                        = var.instance_type
