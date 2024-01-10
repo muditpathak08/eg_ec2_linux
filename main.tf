@@ -53,9 +53,6 @@ data "aws_instances" "foo" {
 resource "null_resource" "test_duplicate_ec2" {
   # Changes to any instance of the cluster requires re-provisioning
   count   = length(data.aws_instances.foo.ids) > 0 ? 1 : 0
-  provisioner "local-exec" {
-    command = "Duplicate EC2"
-  }
   }
 
 # module "existing_sg_rules" {
