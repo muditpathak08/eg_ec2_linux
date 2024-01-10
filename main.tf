@@ -50,6 +50,8 @@ data "aws_instances" "foo" {
   }
 }
 
+
+
 # module "existing_sg_rules" {
 #   source = "./modules/existing_sg_rules"
 #   existing_sg_rules = local.existing_sg_rules
@@ -57,7 +59,7 @@ data "aws_instances" "foo" {
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
-  # count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   ami                                  = var.ami_id
   availability_zone                    = var.availability_zone
   instance_type                        = var.instance_type
@@ -98,14 +100,14 @@ lifecycle {
 }
 
 resource "aws_eip_association" "eip_assoc" {
-  # count       = strcontains(var.Subnet_Name, "public") ? 1: 0
+  count       = strcontains(var.Subnet_Name, "public") ? 1: 0
   instance_id   = aws_instance.project-iac-ec2-linux.id
   allocation_id = var.eip_allocation_id
 }
 
 
 module "ebs_volume" {
-    # count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+    count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
     source = "./modules/ebs_volume"
     ebs_volumes = var.ebs_volume_count
     azs =   var.availability_zone
@@ -119,7 +121,7 @@ module "ebs_volume" {
 
 
 resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
-  # count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   alarm_name                = "RebootAlarm"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        =  var.reboot_evaluation_period
@@ -139,7 +141,7 @@ resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
       }
   }
 resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
-  # count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
   alarm_name                = "RecoverAlarm"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        =  var.recover_evaluation_period
