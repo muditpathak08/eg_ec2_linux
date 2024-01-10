@@ -59,7 +59,7 @@ data "aws_instances" "foo" {
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
-  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+  count   = length(data.aws_instances.foo.ids) > 0 ? 0 : 1
   ami                                  = var.ami_id
   availability_zone                    = var.availability_zone
   instance_type                        = var.instance_type
@@ -107,7 +107,7 @@ resource "aws_eip_association" "eip_assoc" {
 
 
 module "ebs_volume" {
-    count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+    count   = length(data.aws_instances.foo.ids) > 0 ? 0 : 1
     source = "./modules/ebs_volume"
     ebs_volumes = var.ebs_volume_count
     azs =   var.availability_zone
@@ -121,7 +121,7 @@ module "ebs_volume" {
 
 
 resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
-  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+  count   = length(data.aws_instances.foo.ids) > 0 ? 0 : 1
   alarm_name                = "RebootAlarm"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        =  var.reboot_evaluation_period
@@ -141,7 +141,7 @@ resource "aws_cloudwatch_metric_alarm" "reboot-alarm" {
       }
   }
 resource "aws_cloudwatch_metric_alarm" "recover-alarm" {
-  count   = length(data.aws_instances.test.ids) > 0 ? 0 : 1
+  count   = length(data.aws_instances.foo.ids) > 0 ? 0 : 1
   alarm_name                = "RecoverAlarm"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        =  var.recover_evaluation_period
