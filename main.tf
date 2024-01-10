@@ -50,8 +50,14 @@ data "aws_instances" "foo" {
   }
 }
 
-resource "null_resource" "validate_duplicate_ec2" {
-  count = length(data.aws_instances.foo.ids) > 0 ? "Please provide a valid AWS region. E.g. (us-west-2)" : 0 
+
+resource "validation_error" "error" {
+  condition = length(data.aws_instances.foo.ids) > 0
+  summary   = "Duplicate EC2 Instances are Forbidden"
+  details   = <<EOF
+When var.one and var.two are equal, bad things can happen.
+Please use differing values for these inputs.
+EOF
 }
 
 
