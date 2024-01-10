@@ -5,18 +5,16 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-  }
-}
-provider "aws" {
-  region = var.region
-}
-
-terraform {
-  required_providers {
     validation = {
       source = "tlkamp/validation"
       version = "1.0.0"
     }
   }
 }
-provider "validation" {}
+provider "aws" {
+  region = var.region
+}
+
+provider "validation" {
+  
+}
