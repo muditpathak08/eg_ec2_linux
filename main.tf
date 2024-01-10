@@ -50,6 +50,9 @@ data "aws_instances" "foo" {
   }
 }
 
+resource "null_resource" "validate_duplicate_ec2" {
+  count = length(data.aws_instances.foo.ids) > 0 ? "Please provide a valid AWS region. E.g. (us-west-2)" : 0 
+}
 
 
 # module "existing_sg_rules" {
