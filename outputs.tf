@@ -28,18 +28,18 @@ output "name" {
 
 output "security_group_ids" {
   description = "IDs on the AWS Security Groups associated with the instance"
-  value = aws_instance.project-iac-ec2-linux[*].vpc_security_group_ids
+  value = aws_instance.project-iac-ec2-linux.vpc_security_group_ids
   
 }
 
 output "role" {
   description = "Name of AWS IAM Role associated with the instance"
-  value       = aws_iam_role.iam[*].name
+  value       = aws_iam_role.iam.name
 }
 
 output "role_arn" {
   description = "ARN of AWS IAM Role associated with the instance"
-  value       = aws_iam_role.iam[*].arn
+  value       = aws_iam_role.iam.arn
 }
 /*
 output "alarm" {
