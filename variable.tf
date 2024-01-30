@@ -380,12 +380,10 @@ variable "secgroupdescription" {
   
 }
 
-
-
-variable "efs_tags" {
+variable "ebs_tags" {
     default = {
     }
-    description = "Tags for EFS Volume"
+    description = "Tags for EBS Volume"
     type        = map(string)
   }
 
