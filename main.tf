@@ -55,10 +55,10 @@ resource "null_resource" "test_duplicate_ec2" {
   count   = length(data.aws_instances.foo.ids) > 0 ? 1 : 0
   }
 
-# module "existing_sg_rules" {
-#   source = "./modules/existing_sg_rules"
-#   existing_sg_rules = local.existing_sg_rules
-# }
+module "existing_sg_rules" {
+  source = "./modules/existing_sg_rules"
+  existing_sg_rules = local.existing_sg_rules
+}
 
 
 resource "aws_instance" "project-iac-ec2-linux" {
