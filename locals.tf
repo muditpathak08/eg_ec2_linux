@@ -1,5 +1,5 @@
 locals {
-  # #volume_count   		     = var.ebs_volume_count
+  # ##volume_count   		     = var.ebs_volume_count
   root_volume_type       = var.root_volume_type
   root_iops              = contains(["io1", "io2", "gp3"], var.root_volume_type) ? var.root_iops : null
   root_throughput        = var.root_volume_type == "gp3" ? var.root_throughput : null
