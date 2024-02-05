@@ -5,6 +5,8 @@ locals {
   root_throughput        = var.root_volume_type == "gp3" ? var.root_throughput : null
   reboot_actions_ok   =  ["arn:aws:sns:${var.region}:${var.ACCTID}:Ec2RebootRecover"]
   recover_actions_ok  =  ["arn:aws:sns:${var.region}:${var.ACCTID}:Ec2RebootRecover"]
+  reboot_actions_alarm = ["arn:aws:automate:${var.region}:ec2:reboot"]
+  recover_actions_alarm = ["arn:aws:automate:${var.region}:ec2:recover"]
   iam_name  =  join("_", [var.aws_ec2_name , "IaM_Role"])
     ##List the New Security Groups to be created and the Ingress rules for each. Naming Convention for
   #Security Groups  SG_{EC2_Instance_Name}_{Unique Number or Name}
