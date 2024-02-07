@@ -19,12 +19,4 @@ provider "validation" {
   
 }
 
-terraform {
-  cloud {
-    organization = "Cfg_CIMS_Terraform_AWS"
 
-    workspaces {
-      name = "eg_ec2_linux_sg_lpx_001"
-    }
-  }
-}
